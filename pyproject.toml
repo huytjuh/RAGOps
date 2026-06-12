@@ -1,0 +1,38 @@
+[project]
+name = "ragops"
+version = "0.1.0"
+description = "Operational tooling for extracting, enriching, and retrieving structured knowledge for RAG systems."
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+authors = [
+    { name = "RAGOps maintainers" },
+]
+dependencies = []
+
+[tool.poetry]
+packages = [
+    { include = "ragops", from = "src" },
+    { include = "_01_complaints", from = "src" },
+    { include = "_02_transcripts", from = "src" },
+    { include = "_03_documents", from = "src" },
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+ruff = "^0.11.0"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
